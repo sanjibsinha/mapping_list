@@ -29,14 +29,24 @@ class _FirstPageState extends State<FirstPage> {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-    if (_questionIndex > 1) {
+    if (_questionIndex > 2) {
       _questionIndex = 0;
     }
   }
 
   var _questions = [
-    'What is your favorite book?',
-    'Who is your favorite author?',
+    {
+      'questionText': 'What\'s the meaning of Assuetude?',
+      'answers': ['kiss', 'insolent', 'habit', 'half'],
+    },
+    {
+      'questionText': 'What\'s the meaning of Disingenuous?',
+      'answers': ['guilty', 'jovial', 'jocular', 'insincere'],
+    },
+    {
+      'questionText': 'What\'s the meaning of Afflatus?',
+      'answers': ['ghost', 'inspiration', 'lifeless', 'greedy'],
+    },
   ];
 
   @override
@@ -54,13 +64,13 @@ class _FirstPageState extends State<FirstPage> {
         child: Center(
           child: Column(
             children: [
-              Questions(_questions[_questionIndex]),
-              SizedBox(
-                height: 10,
+              Questions(
+                _questions[_questionIndex]['questionText'],
               ),
-              Answers('Answer 1', _answerQuestion),
-              Answers('Answer 2', _answerQuestion),
-              Answers('Answer 3', _answerQuestion),
+              ...(_questions[_questionIndex]['answers'] as List<String>)
+                  .map((answer) {
+                return Answers(answer, _answerQuestion);
+              }).toList()
             ],
           ),
         ),

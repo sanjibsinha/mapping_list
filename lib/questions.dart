@@ -9,7 +9,8 @@ class Questions extends StatelessWidget {
       handler,
       style: TextStyle(
         color: Colors.red,
-        fontSize: 20,
+        fontSize: 40,
+        fontWeight: FontWeight.bold,
       ),
     );
   }
